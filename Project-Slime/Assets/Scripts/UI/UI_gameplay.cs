@@ -32,6 +32,15 @@ public class UI_gameplay : MonoBehaviour
     void Curse_update()
     {
         l = FindObjectsOfType<CurseBehaviour>();
+
+        foreach (CurseBehaviour c in l)
+        {
+            if (c.act)
+            {
+                bar_rect.gameObject.SetActive(true);
+            }
+        }
+
         curse = 0;
         for (int i = 0; i < l.Length; i++) curse += l[i].curse_strength;
         bar = Mathf.Min(max_curse, bar + (curse) / 220);

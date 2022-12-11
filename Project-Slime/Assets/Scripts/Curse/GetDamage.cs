@@ -16,6 +16,7 @@ namespace SA
             Destroy(gameObject.transform.parent.GetChild(0).gameObject);
             Destroy(gameObject.transform.parent.GetChild(1).gameObject);
             GameObject.Find("Controller").GetComponent<StateManager>().characterStats.xp += 50;
+            GameObject.Find("Gameplay").GetComponent<UI_gameplay>().bar_rect.gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)

@@ -930,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &128630249
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5493,10 +5493,10 @@ MonoBehaviour:
   health_back: {fileID: 1211806134}
   damdage_moment: {fileID: 361450129}
   dam_coll: {fileID: 1034525941}
-  HP: {fileID: 2113805577}
-  DM: {fileID: 715969098}
-  HPc: {fileID: 822917088}
-  DMc: {fileID: 21316825}
+  HP: {fileID: 922014341}
+  DM: {fileID: 734794162}
+  HPc: {fileID: 1860036506}
+  DMc: {fileID: 1926475350}
   hp_lvl: 0
   dam_lvl: 0
 --- !u!114 &634753543
@@ -11888,11 +11888,11 @@ RectTransform:
   m_Father: {fileID: 634753541}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 350}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 300, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1470837124
 MonoBehaviour:
   m_ObjectHideFlags: 0
