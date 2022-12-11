@@ -40,6 +40,8 @@ namespace SA
         float delta;
         float l_delta;
 
+        public List<AudioSource> steps = new List<AudioSource>();
+
         void Start()
         {
             jump_delta = Time.deltaTime;
@@ -133,6 +135,8 @@ namespace SA
             {
                 states.run = (states.moveAmount > 0);
             }
+
+            
 
             if (states.run)
             {

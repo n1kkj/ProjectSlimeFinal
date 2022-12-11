@@ -8,6 +8,7 @@ namespace SA
     public class GetDamagePlayer : MonoBehaviour
     {
         public StateManager states;
+        public List<AudioSource> sources = new List<AudioSource>();
 
         public void Init(StateManager st)
         {
@@ -20,6 +21,9 @@ namespace SA
 
             if (damag != null && other.gameObject.tag == "Enemy")
             {
+                int ind = Random.Range(0, sources.Count);
+                sources[ind].Play();
+
                 gameObject.transform.GetChild(0).GetComponent<WeaponHook>().CloseDamageCollidersWeapon();
                 Debug.Log(other.gameObject.name);
                 states.characterStats.hp -= damag.damage;

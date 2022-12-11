@@ -58,6 +58,7 @@ namespace SA
         List<Rigidbody> ragdollRigids = new List<Rigidbody>();
         List<Transform> ragdollRigidsT = new List<Transform>();
         List<Collider> ragdollColliders = new List<Collider>();
+        public List<AudioSource> steps = new List<AudioSource>();
 
 
         [HideInInspector]
@@ -254,6 +255,7 @@ namespace SA
 
         public void FixedTick(float d)
         {
+
         
             if (!enabledSc)
                 return;
@@ -298,6 +300,8 @@ namespace SA
 
             if (!canMove)
             {
+                steps[0].enabled = false;
+                steps[1].enabled = false;
                 return;
             }
 
@@ -318,14 +322,28 @@ namespace SA
             }
                 
             if (run)
+            {
+                steps[0].enabled = false;
+                steps[1].enabled = true;
                 targetSpeed = runSpeed;
+                lockOn = false;
+            }
+            else if (!run && moveAmount > 0)
+            {
+                steps[0].enabled = true;
+                steps[1].enabled = false;
+            }
+            else
+            {
+                steps[0].enabled = false;
+                steps[1].enabled = false;
+            }
             
 
             if (onGround)
                 rigid.velocity = moveDir * (targetSpeed * moveAmount);
 
-            if (run)
-                lockOn = false;
+                
 
 
             Vector3 targetDir = (lockOn == false) ? moveDir

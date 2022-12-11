@@ -116,10 +116,11 @@ namespace SA
             this.enabled = false;
         }
 
-        public void CheckHealth(GameObject weapon = null)
+        public void CheckHealth(AudioSource audi, GameObject weapon = null)
         {
             if (characterStats.hp <= 0)
             {
+                audi.Play();
                 Debug.Log(weapon);
                 //weapon.SetActive(false);
                 gameObject.GetComponent<AIHandler>().enabled = false;

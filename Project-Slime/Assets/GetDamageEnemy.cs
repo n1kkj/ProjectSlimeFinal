@@ -29,6 +29,9 @@ namespace SA
 
                 //dmg[rnd].pitch = seed
 
+                int ind = Random.Range(0, dmg.Count);
+                dmg[ind].Play();
+
                 gameObject.transform.GetChild(0).GetComponent<WeaponHook>().CloseDamageCollidersWeapon();
                 other.GetComponent<DamageCollider>().enabled = false;
                 aiHandler.stunned = true;
@@ -37,8 +40,7 @@ namespace SA
                 aiHandler.aiState = AIHandler.AIState.close;
                 Debug.Log(aiHandler.aiState);
                 eStates.anim.Play(StaticStrings.damage2);
-                eStates.CheckHealth(weapon);
-                audio.Play();
+                eStates.CheckHealth(audio, weapon);
             }
         }
     }

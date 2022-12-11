@@ -41,6 +41,7 @@ namespace SA
         public Transform player;
         public bool activated = false;
         public float TP_RANGE = 0f;
+        public AudioSource audi;
 
         private void Teleport_core()
         {
@@ -57,7 +58,7 @@ namespace SA
             int cnt = 0;
 
             UnityEngine.AI.NavMeshHit navmesh_hit;
-            UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 3 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
+            UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 5 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
             random_point = navmesh_hit.position;
 
             while (!get_correct_point || (random_point - player.transform.position).magnitude < 10f)
@@ -67,7 +68,7 @@ namespace SA
                     Debug.Log("Core CRUSDF");
                     break;
                 }
-                UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 3 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
+                UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 5 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
                 random_point = navmesh_hit.position;
 
                 //get_correct_point = true;
@@ -79,6 +80,7 @@ namespace SA
 
             goblinDmg.enabled = false;
             goblinAnim.Play("teleport");
+            audi.Play();
             StartCoroutine(waitTeleport());
 
 
@@ -118,7 +120,7 @@ namespace SA
             bool get_correct_point = false;
             UnityEngine.AI.NavMeshHit navmesh_hit;
 
-            UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 3 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
+            UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 5 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
             random_point = navmesh_hit.position;
 
             int cnt = 0;
@@ -134,7 +136,7 @@ namespace SA
                     Debug.Log("Heal CRUSH");
                 }
 
-                UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 3 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
+                UnityEngine.AI.NavMesh.SamplePosition(Random.insideUnitSphere * TP_RANGE + transform.position, out navmesh_hit, 5 * TP_RANGE, UnityEngine.AI.NavMesh.AllAreas);
                 random_point = navmesh_hit.position;
 
                 //get_correct_point = true;
