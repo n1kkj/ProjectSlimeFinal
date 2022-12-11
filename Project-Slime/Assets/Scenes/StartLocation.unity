@@ -930,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &128630249
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5493,8 +5493,8 @@ MonoBehaviour:
   health_back: {fileID: 1211806134}
   damdage_moment: {fileID: 361450129}
   dam_coll: {fileID: 1034525941}
-  HP: {fileID: 2113805577}
-  DM: {fileID: 715969098}
+  HP: {fileID: 922014341}
+  DM: {fileID: 734794162}
   HPc: {fileID: 1860036506}
   DMc: {fileID: 1926475350}
   hp_lvl: 0
@@ -8951,7 +8951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1077778157
 MonoBehaviour:
   m_ObjectHideFlags: 0

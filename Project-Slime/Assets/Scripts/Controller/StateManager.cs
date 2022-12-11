@@ -223,11 +223,8 @@ namespace SA
             yield return new WaitForSeconds(4);
             DisableRagdoll();
             GameObject.Find("Gameplay").GetComponent<UI_gameplay>().bar = 0;
+            GameObject.Find("Gameplay").GetComponent<UI_gameplay>().bar_rect.gameObject.SetActive(false);
             characterStats.xp = 0;
-            characterStats.max_hp = 300;
-            GameObject.Find("UI").GetComponent<UI_XP>().dam_lvl = 0;
-            GameObject.Find("UI").GetComponent<UI_XP>().hp_lvl = 0;
-            GameObject.Find("UI").GetComponent<UI_XP>().dam_coll.add_damage = 0;
             GameObject.Find("Gameplay").GetComponent<UI_gameplay>().health_back.sizeDelta = new Vector2(characterStats.max_hp, 35);
             GameObject.Find("Gameplay").GetComponent<UI_gameplay>().damdage_moment.sizeDelta = new Vector2(characterStats.max_hp, 35);
             anim.enabled = true;
