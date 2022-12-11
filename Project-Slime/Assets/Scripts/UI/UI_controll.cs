@@ -52,6 +52,21 @@ namespace SA
             camManager.enabledTurning = true;
             in_skills = false;
         }
+
+        public void Pause()
+        {
+            camManager.enabledTurning = false;
+            timer = 0;
+            curse_script = FindObjectsOfType<CurseBehaviour>();
+            foreach (CurseBehaviour i in curse_script)
+            {
+                i.enabled = false;
+            }
+            game = gameplay.GetComponent<UI_gameplay>();
+            game.paused = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         void Update()
         {
             Time.timeScale = timer;
@@ -59,17 +74,7 @@ namespace SA
             else if (Input.GetKeyDown(KeyCode.Escape) && ispause == true) ispause = false;
             if (ispause == true)
             {
-                camManager.enabledTurning = false;
-                timer = 0;
-                curse_script = FindObjectsOfType<CurseBehaviour>();
-                foreach (CurseBehaviour i in curse_script)
-                {
-                    i.enabled = false;
-                }
-                game = gameplay.GetComponent<UI_gameplay>();
-                game.paused = true;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                Pause();
                 pause.SetActive(true);
             }
             else if (ispause == false && !in_skills)
