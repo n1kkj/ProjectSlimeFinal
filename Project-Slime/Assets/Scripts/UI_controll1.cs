@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SA
 {
-    public class UI_controll : MonoBehaviour
+    public class UI_controll1 : MonoBehaviour
     {
         public float timer;
         public UI_gameplay game;

@@ -85,6 +85,8 @@ namespace SA
         float _actionDelay;
         float _itemUseDelay;
 
+        public bool en_Checking = true;
+
         public void Init()
         {
             enabledSc = true;
@@ -255,118 +257,119 @@ namespace SA
 
         public void FixedTick(float d)
         {
-
-        
-            if (!enabledSc)
-                return;
-            delta = d;
-
-            isBlocking = false;
-            usingItem = anim.GetBool(StaticStrings.interacting);
-            DetectAction();
-            DetectItemAction();
-            inventoryManager.rightHandWeapon.weaponModel.SetActive(!usingItem);
-
-            anim.SetBool(StaticStrings.blocking, isBlocking);
-            anim.SetBool(StaticStrings.isLeft, isLeftHand);
-
-
-            if (isBlocking && shield.activeInHierarchy == false)
+            if (en_Checking)
             {
-                EnableShield();
-            }
-            else if (!isBlocking && shield.activeInHierarchy == true)
-                DisabelShield();
 
-            if (inAction)
-            {
-                anim.applyRootMotion = true;
+                if (!enabledSc)
+                    return;
+                delta = d;
 
-                _actionDelay += delta;
-                if (_actionDelay > 0.3f)
+                isBlocking = false;
+                usingItem = anim.GetBool(StaticStrings.interacting);
+                DetectAction();
+                DetectItemAction();
+                inventoryManager.rightHandWeapon.weaponModel.SetActive(!usingItem);
+
+                anim.SetBool(StaticStrings.blocking, isBlocking);
+                anim.SetBool(StaticStrings.isLeft, isLeftHand);
+
+
+                if (isBlocking && shield.activeInHierarchy == false)
                 {
+                    EnableShield();
+                }
+                else if (!isBlocking && shield.activeInHierarchy == true)
+                    DisabelShield();
 
-                    inAction = false;
-                    _actionDelay = 0;
+                if (inAction)
+                {
+                    anim.applyRootMotion = true;
+
+                    _actionDelay += delta;
+                    if (_actionDelay > 0.3f)
+                    {
+
+                        inAction = false;
+                        _actionDelay = 0;
+                    }
+                    else
+                        return;
+                }
+
+
+
+
+                canMove = anim.GetBool(StaticStrings.canMove);
+
+                if (!canMove)
+                {
+                    steps[0].enabled = false;
+                    steps[1].enabled = false;
+                    return;
+                }
+
+                // a_hook.rm_multi = 1;
+                a_hook.CloseRoll();
+                HandleRolls();
+
+                anim.applyRootMotion = false;
+
+
+                rigid.drag = (moveAmount > 0 || onGround == false) ? 1 : 4;
+
+                float targetSpeed = moveSpeed;
+                if (usingItem)
+                {
+                    run = false;
+                    moveAmount = Mathf.Clamp(moveAmount, 0, 0.5f);
+                }
+
+                if (run)
+                {
+                    steps[0].enabled = false;
+                    steps[1].enabled = true;
+                    targetSpeed = runSpeed;
+                    lockOn = false;
+                }
+                else if (!run && moveAmount > 0)
+                {
+                    steps[0].enabled = true;
+                    steps[1].enabled = false;
                 }
                 else
-                    return;
+                {
+                    steps[0].enabled = false;
+                    steps[1].enabled = false;
+                }
+
+
+                if (onGround)
+                    rigid.velocity = moveDir * (targetSpeed * moveAmount);
+
+
+
+
+                Vector3 targetDir = (lockOn == false) ? moveDir
+                    :
+                    (lockOnTransform != null) ? lockOnTransform.transform.position - transform.position
+                        :
+                        moveDir;
+
+                targetDir.y = 0;
+                if (targetDir == Vector3.zero)
+                    targetDir = transform.forward;
+                Quaternion tr = Quaternion.LookRotation(targetDir);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, delta * moveAmount * rotateSpeed);
+                transform.rotation = targetRotation;
+
+                anim.SetBool(StaticStrings.lockon, lockOn);
+
+                if (!lockOn)
+                    HandleMovementAnimations();
+                else
+                    HandleLockOnAnimations(moveDir);
+
             }
-
-                
-               
-
-            canMove = anim.GetBool(StaticStrings.canMove);
-
-            if (!canMove)
-            {
-                steps[0].enabled = false;
-                steps[1].enabled = false;
-                return;
-            }
-
-            // a_hook.rm_multi = 1;
-            a_hook.CloseRoll();
-            HandleRolls();
-
-            anim.applyRootMotion = false;
-            
-
-            rigid.drag = (moveAmount > 0 || onGround == false) ? 1 : 4;
-
-            float targetSpeed = moveSpeed;
-            if (usingItem)
-            {
-                run = false;
-                moveAmount = Mathf.Clamp(moveAmount, 0, 0.5f);
-            }
-                
-            if (run)
-            {
-                steps[0].enabled = false;
-                steps[1].enabled = true;
-                targetSpeed = runSpeed;
-                lockOn = false;
-            }
-            else if (!run && moveAmount > 0)
-            {
-                steps[0].enabled = true;
-                steps[1].enabled = false;
-            }
-            else
-            {
-                steps[0].enabled = false;
-                steps[1].enabled = false;
-            }
-            
-
-            if (onGround)
-                rigid.velocity = moveDir * (targetSpeed * moveAmount);
-
-                
-
-
-            Vector3 targetDir = (lockOn == false) ? moveDir
-                : 
-                (lockOnTransform != null) ?  lockOnTransform.transform.position - transform.position
-                    : 
-                    moveDir;
-
-            targetDir.y = 0;
-            if (targetDir == Vector3.zero)
-                targetDir = transform.forward;
-            Quaternion tr = Quaternion.LookRotation(targetDir);
-            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, delta * moveAmount * rotateSpeed);
-            transform.rotation = targetRotation;
-
-            anim.SetBool(StaticStrings.lockon, lockOn);
-
-            if (!lockOn)
-                HandleMovementAnimations();
-            else
-                HandleLockOnAnimations(moveDir);
-
-
         }
 
         public void EnableShield()

@@ -69,9 +69,15 @@ namespace SA
             en_turn = true;
         }
 
+        public void SetLockonTarget(GameObject Boss)
+        {
+            lockonTarget = Boss.GetComponent<EnemyTarget>();
+
+        }
+
         public void Tick(float d)
         {
-            if (enabledTurning && en_turn)
+            if (enabledTurning && en_turn && states.en_Checking)
             {
                 float h = Input.GetAxis("Mouse X");
                 float v = Input.GetAxis("Mouse Y");

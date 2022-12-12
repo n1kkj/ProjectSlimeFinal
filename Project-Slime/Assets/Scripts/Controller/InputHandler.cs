@@ -55,23 +55,31 @@ namespace SA
 
         void FixedUpdate()
         {
-            GetInput();
+            if (states.en_Checking)
+            {
+                GetInput();
 
-            delta = Time.fixedDeltaTime;
-            UpdateStates();
-            states.FixedTick(Time.deltaTime);
+                delta = Time.fixedDeltaTime;
+                UpdateStates();
+                states.FixedTick(Time.deltaTime);
+            }
+            
             
         }
 
         void Update()
         {
-            camManager.Tick(delta);
-            GetInputTick();
-            delta = Time.deltaTime;
-            l_delta += delta;
-            states.Tick(delta);
+            if (states.en_Checking)
+            {
+                camManager.Tick(delta);
+                GetInputTick();
+                delta = Time.deltaTime;
+                l_delta += delta;
+                states.Tick(delta);
 
-            ResetInputNStates();
+                ResetInputNStates();
+            }
+            
         }
 
         void GetInput()
@@ -118,80 +126,84 @@ namespace SA
 
         void UpdateStates()
         {
-            states.horizontal = horizontal;
-            states.vertical = vertical;
-
-            Vector3 v = vertical * camManager.transform.forward;
-            Vector3 h = horizontal * camManager.transform.right;
-
-            states.moveDir = (v + h).normalized;
-            float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
-            states.moveAmount = Mathf.Clamp01(m);
-
-            if (x_input)
-                b_input = false;
-
-            if (b_input && b_timer > 0.5f)
+            if (states.en_Checking)
             {
-                states.run = (states.moveAmount > 0);
-            }
+                states.horizontal = horizontal;
+                states.vertical = vertical;
 
-            
+                Vector3 v = vertical * camManager.transform.forward;
+                Vector3 h = horizontal * camManager.transform.right;
 
-            if (states.run)
-            {
-                if (leftAxis_down && states.onGround)
+                states.moveDir = (v + h).normalized;
+                float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
+                states.moveAmount = Mathf.Clamp01(m);
+
+                if (x_input)
+                    b_input = false;
+
+                if (b_input && b_timer > 0.5f)
                 {
-                    jump_delta = 0;
-                    states.Jump();
-                }    
-            }    
+                    states.run = (states.moveAmount > 0);
+                }
 
-            if (b_input == false && b_timer > 0 && b_timer < 0.5f)
-            {
-                states.rollInput = true;
-            }
 
-            states.itemInput = x_input;
-            states.rt = rt_input;
-            states.lt = lt_input;
-            states.rb = rb_input;
-            states.lb = lb_input;
 
-            if (y_input)
-            {
-                states.isTwoHanded = !states.isTwoHanded;
-                states.HandleTwoHamded();
-            }
-
-            if (states.lockOnTarget != null)
-            {
-                if (states.lockOnTarget.eStates.enabled == false)
+                if (states.run)
                 {
-                    states.lockOn = false;
-                    states.lockOnTarget = null;
-                    states.lockOnTransform = null;
-                    camManager.lockonTarget = null;
-                    camManager.lockon = false;
+                    if (leftAxis_down && states.onGround)
+                    {
+                        jump_delta = 0;
+                        states.Jump();
+                    }
+                }
+
+                if (b_input == false && b_timer > 0 && b_timer < 0.5f)
+                {
+                    states.rollInput = true;
+                }
+
+                states.itemInput = x_input;
+                states.rt = rt_input;
+                states.lt = lt_input;
+                states.rb = rb_input;
+                states.lb = lb_input;
+
+                if (y_input)
+                {
+                    states.isTwoHanded = !states.isTwoHanded;
+                    states.HandleTwoHamded();
+                }
+
+                if (states.lockOnTarget != null)
+                {
+                    if (states.lockOnTarget.eStates.enabled == false)
+                    {
+                        states.lockOn = false;
+                        states.lockOnTarget = null;
+                        states.lockOnTransform = null;
+                        camManager.lockonTarget = null;
+                        camManager.lockon = false;
+                    }
+                }
+
+                if (rightAxis_down && l_delta > .7f)
+                {
+                    l_delta = 0;
+                    states.lockOn = !states.lockOn;
+
+                    states.lockOnTarget = EnemyManager.singleton.GetEnemy(transform.position);
+                    if (states.lockOnTarget == null)
+                        states.lockOn = false;
+
+                    camManager.lockonTarget = states.lockOnTarget;
+                    states.lockOnTransform = states.lockOnTarget.GetTarget();
+                    camManager.lockonTransform = states.lockOnTransform;
+                    camManager.lockon = states.lockOn;
+
+
                 }
             }
-
-            if (rightAxis_down && l_delta > .7f)
-            {
-                l_delta = 0;
-                states.lockOn = !states.lockOn;
-
-                states.lockOnTarget = EnemyManager.singleton.GetEnemy(transform.position);
-                if (states.lockOnTarget == null)
-                    states.lockOn = false;
-
-                camManager.lockonTarget = states.lockOnTarget;
-                states.lockOnTransform = states.lockOnTarget.GetTarget();
-                camManager.lockonTransform = states.lockOnTransform;
-                camManager.lockon = states.lockOn;
-
-                
-            }
+            
         }  
 
 

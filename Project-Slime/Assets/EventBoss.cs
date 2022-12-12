@@ -13,22 +13,24 @@ namespace SA
         public StateManager states;
         public GameObject boss_obj;
         public CameraManager camMan;
+        public Rigidbody rb;
 
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Player")
             {
+                states.en_Checking = false;
                 states.run = false;
-                states.lockOn = true;
-                states.lockOnTarget = boss_obj.GetComponent<EnemyTarget>();
-                states.lockOnTransform = states.lockOnTarget.GetTarget();
-                camMan.lockonTarget = states.lockOnTarget;
-                camMan.lockonTransform = states.lockOnTransform;
-                camMan.lockon = states.lockOn;
+                states.lockOn = false;
+                states.anim.Play("Rage");
+                //states.enabled = false;
                 IP.enabled = false;
-                states.enabled = false;
+                camMan.enabled = false;
+                //states.enabled = true;
+                states.anim.CrossFade("Final", 12f);
                 boss.Invoke();
+
             }
         }
     }
