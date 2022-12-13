@@ -15,9 +15,9 @@ namespace SA
         public float mouseSpeed = 2;
         public float controllerSpeed = 7f;
 
-        public Transform target;
-        public EnemyTarget lockonTarget;
-        public Transform lockonTransform;
+        public Transform target = null;
+        public EnemyTarget lockonTarget = null;
+        public Transform lockonTransform = null;
 
         
         public Transform pivot;
