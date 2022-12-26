@@ -35,7 +35,7 @@ namespace SA
 
 
         StateManager states;
-        CameraManager camManager;
+        public CameraManager camManager;
 
         float delta;
         float l_delta;

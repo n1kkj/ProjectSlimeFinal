@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - New_enemy
   - Curse
+  - patrol
+  - point
   layers:
   - Default
   - TransparentFX

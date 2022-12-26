@@ -1061,12 +1061,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566441017731593793}
-  - component: {fileID: 4854089964906081339}
-  - component: {fileID: 1312698905540121000}
-  - component: {fileID: 1312698905540121001}
   m_Layer: 0
   m_Name: Brute@Standing Idle Looking Ver. 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1088,58 +1085,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4854089964906081339
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2231196490457312507}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 16b7b84d0a2ca124a8c8c6cda224729d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8cba08d1520eba948aec16d3c5e947cc, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1312698905540121000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2231196490457312507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e1cfa4735760e408f20e51a816e607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageCollider:
-  - {fileID: 1312698906205430480}
---- !u!114 &1312698905540121001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2231196490457312507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c064bc5847e429e48a30b414b062fdac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states: {fileID: 0}
-  eStates: {fileID: 0}
-  rm_multi: 0
-  rolling: 0
-  roll_t: 0
-  jumping: 0
 --- !u!1 &2314418497064264611
 GameObject:
   m_ObjectHideFlags: 0
