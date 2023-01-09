@@ -297,7 +297,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4160087740628497064}
-  - component: {fileID: 1312698905540120660}
   m_Layer: 0
   m_Name: mixamorig:Weapon
   m_TagString: Untagged
@@ -321,20 +320,6 @@ Transform:
   m_Father: {fileID: 829234598526889570}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1312698905540120660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224235666883604622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e1cfa4735760e408f20e51a816e607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageCollider:
-  - {fileID: 1312698906205430480}
 --- !u!1 &1303565189657567059
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,14 +363,13 @@ GameObject:
   - component: {fileID: 1312698906205430481}
   - component: {fileID: 1312698906205430495}
   - component: {fileID: 1312698906205430494}
-  - component: {fileID: 1312698906205430492}
   m_Layer: 9
   m_Name: DamageCollider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1312698906205430481
 Transform:
   m_ObjectHideFlags: 0
@@ -410,10 +394,10 @@ BoxCollider:
   m_GameObject: {fileID: 1312698906205430480}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.42954808, y: 0.21187748, z: 1.6280223}
-  m_Center: {x: 0.061957236, y: -0.024407158, z: 0.3140107}
+  m_Size: {x: 0.42954808, y: 0.21187748, z: 0.6307186}
+  m_Center: {x: 0.061965697, y: -0.02442057, z: 0.8126659}
 --- !u!114 &1312698906205430494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,24 +410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509dba536dcce184b8e3b15000e9e387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 10
   add_damage: 0
---- !u!54 &1312698906205430492
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312698906205430480}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1588693223751570282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1029,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566441017731593793}
+  - component: {fileID: 220967297736718267}
+  - component: {fileID: 7074810748189054640}
+  - component: {fileID: 949816226614042301}
+  - component: {fileID: 4387161831740686482}
   m_Layer: 0
   m_Name: Brute@Standing Idle Looking Ver. 1
   m_TagString: Enemy
@@ -1085,6 +1057,74 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &220967297736718267
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2231196490457312507}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!95 &7074810748189054640
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2231196490457312507}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 16b7b84d0a2ca124a8c8c6cda224729d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6e4e348d9687dde4dbcc227459d5e558, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &949816226614042301
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2231196490457312507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.40307838
+  m_Height: 1.9253185
+  m_Direction: 1
+  m_Center: {x: 0.028859138, y: 0.9484204, z: 0.051125407}
+--- !u!114 &4387161831740686482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2231196490457312507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd918c74d9de81408782b494d26ed9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2314418497064264611
 GameObject:
   m_ObjectHideFlags: 0

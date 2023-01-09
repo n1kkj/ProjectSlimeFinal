@@ -18,7 +18,7 @@ namespace SA
             states = st;
             EquipWeapon(rightHandWeapon, false);
             EquipWeapon(leftHandWeapon, true);
-            InitAllDamageColliders(states);
+            //InitAllDamageColliders(states);
             CloseAllDamageColliders();
 
 
@@ -41,14 +41,14 @@ namespace SA
                 return rightHandWeapon;
         }
 
-        public void InitAllDamageColliders(StateManager states)
+        /*public void InitAllDamageColliders(StateManager states)
         {
             if (rightHandWeapon.w_hook != null)
                 rightHandWeapon.w_hook.InitDamageColliders(states);
 
             if (leftHandWeapon.w_hook != null)
                 leftHandWeapon.w_hook.InitDamageColliders(states);
-        }
+        }*/
 
         public void OpenAllDamageColliders()
         {

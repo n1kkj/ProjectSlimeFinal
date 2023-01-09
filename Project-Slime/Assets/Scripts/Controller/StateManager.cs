@@ -61,7 +61,7 @@ namespace SA
         public List<AudioSource> steps = new List<AudioSource>();
 
 
-        [HideInInspector]
+        [SerializeField]
         public Animator anim;
         [HideInInspector]
         public Rigidbody rigid;
@@ -235,7 +235,7 @@ namespace SA
             transform.position = curCheckpoint;
             characterStats.hp = characterStats.max_hp;
             saveEnemy.GetComponent<ReadFromFile>().Read_f();
-            //GameObject.Find("enemy_save").GetComponent<WriteToTheFile>().SaveTheProgress();
+            GameObject.Find("enemy_save").GetComponent<WriteToTheFile>().SaveTheProgress();
         }
 
         void SetupAnimator()
